@@ -61,7 +61,7 @@ def gen_data():
     for s in scenes:
         s_id = s.split('_')[1]
         if int(s_id) in existing_scenes:
-            res_scenes.append(int(s_id))
+            res_scenes.append(existing_scenes.index(int(s_id))))
             print(res_scenes)
 
     for scene_idx in res_scenes:
