@@ -57,6 +57,7 @@ print("Split: {}, which contains {} scenes.".format(args.split, len(scenes)))
 def gen_data():
     res_scenes = list()
     for s in scenes:
+        s = str.encode(s)
         s_id = s.split('_')[1]
         res_scenes.append(int(s_id))
 
