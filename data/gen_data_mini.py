@@ -21,7 +21,7 @@ parser.add_argument('-s', '--split', default='train', type=str, help='The data s
 parser.add_argument('-p', '--savepath', default='/media/pwu/62316788-a8e6-423c-9ed3-303ebb3ab2de/pwu/temporal_data/train', type=str, help='Directory for saving the generated data')
 args = parser.parse_args()
 
-nusc = NuScenes(version='v1.0-trainval', dataroot=args.root, verbose=True)
+nusc = NuScenes(version='v1.0-mini', dataroot=args.root, verbose=True)
 print("Total number of scenes:", len(nusc.scene))
 
 class_map = {'vehicle.car': 1, 'vehicle.bus.rigid': 1, 'vehicle.bus.bendy': 1, 'human.pedestrian': 2,
