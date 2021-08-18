@@ -50,15 +50,19 @@ future_frame_skip = 0  # when generating the BEV maps, how many future frames ne
 num_past_frames_for_bev_seq = 5  # the number of past frames for BEV map sequence
 
 
-scenes = np.load('data/split_mini.npy', allow_pickle=True).item().get(args.split)
+scenes = np.load('data/split.npy', allow_pickle=True).item().get(args.split)
 print("Split: {}, which contains {} scenes.".format(args.split, len(scenes)))
 
 # ---------------------- Extract the scenes, and then pre-process them into BEV maps ----------------------
 def gen_data():
     res_scenes = list()
+    
+    existing_scenes = [int(scene['name'][6:]) for scene in nusc.scene]
     for s in scenes:
         s_id = s.split('_')[1]
-        res_scenes.append(int(s_id))
+        if int(s_id) in existing_scenes:
+            res_scenes.append(int(s_id))
+            print(res_scenes)
 
     for scene_idx in res_scenes:
         curr_scene = nusc.scene[scene_idx]
