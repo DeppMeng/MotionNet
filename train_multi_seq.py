@@ -301,7 +301,7 @@ def compute_and_bp_loss(optimizer, device, future_frames_num, all_disp_field_gt,
         map_shape = cat_weight_map.size()
 
         loss_disp = criterion(gt * valid_pixel_maps, disp_pred * valid_pixel_maps)
-        loss_disp = loss_disp.view(map_shape[0], -1, map_shape[-3], map_shape[-2], map_shape[-1])
+        loss_disp = loss_disp.reshape(map_shape[0], -1, map_shape[-3], map_shape[-2], map_shape[-1])
         loss_disp = torch.sum(loss_disp * cat_weight_map) / valid_pixel_num
     else:
         loss_disp = criterion(gt * valid_pixel_maps, disp_pred * valid_pixel_maps) / valid_pixel_num
